@@ -6,6 +6,8 @@
 
 keywords: [[https://srfi.schemers.org/?keywords=data-structure][Data Structure]]
 
+library-name: basic-hash-tables
+
 This repository hosts [[https://srfi.schemers.org/srfi-69/][SRFI 69]]: Basic hash tables, a [[https://srfi.schemers.org/][Scheme Request for Implementation]].
 
 This SRFI is in /final/ status.

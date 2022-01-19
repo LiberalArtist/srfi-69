@@ -1,25 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="en">
 <head>
   <title>SRFI 69: Basic hash tables</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/srfi.css" type="text/css" />
+  <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
+  <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
+  <meta charset="utf-8" />
  <meta name="author" content="Panu Kalliokoski">
  <meta name="generator" content="stx2any">
- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <meta name="date" content="2005-02-24">
 </head>
 <body>
 
-<a name="Ttl"><H1>Title</H1></a>
+<h1><a href="https://srfi.schemers.org/"><img class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" alt="SRFI surfboard logo" /></a>69: Basic hash tables</h1>
 
-Basic hash tables
+<p>by Panu Kalliokoski</p>
 
-<a name="thr"><H1>Author</H1></a>
-
-Panu Kalliokoski
-
-<H1>Status</H1>
+<h2>Status</h2>
 
 <p>This SRFI is currently in <em>final</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+69  +at+srfi+dotschemers+dot+org">srfi-69  @<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-69  ">archive</a>.</p>
 <ul>
@@ -32,7 +29,7 @@ Panu Kalliokoski
   <li>Final: <a href="https://srfi.schemers.org/srfi-69/srfi-69-1.5.html">2005-09-14</a></li>
 </ul>
 
-<h1><a name="bstr">Abstract</a></h1>
+<h2 id="bstr">Abstract</h2>
 
 <p>This SRFI defines basic hash tables.  Hash tables are widely recognised
 as a fundamental data structure for a wide variety of applications.  A
@@ -55,7 +52,7 @@ facility with guaranteed behaviour
 <li>to help the programmer by defining utility routines that account for
 the most common situations of using hash tables.
 
-</ol><h1><a name="sss">Issues</a></h1>
+</ol><h2 id="sss">Issues</h2>
 
 <p>There is no single best way to make hash tables.  The tables presented
 in this SRFI aim at being both conceptually simple and usable for a wide
@@ -78,7 +75,7 @@ implementation supporting both SRFI 44 and this SRFI is encouraged to
 provide a SRFI 44 interface to hash tables in addition to the one
 presented here.
 
-<h1><a name="Rtn">Rationale</a></h1>
+<h2 id="Rtn">Rationale</h2>
 
 <p>Hash tables are widely recognised as a fundamental data structure for
 many kinds of computational tasks.  Thus far, there is no existing
@@ -107,7 +104,7 @@ need to be written and rewritten for various applications.
 makes it possible to write efficient and portable programs that use hash
 tables.
 
-<h1><a name="Spcf">Specification</a></h1>
+<h2 id="Spcf">Specification</h2>
 
 <p>Names defined in this SRFI:
 
@@ -142,7 +139,7 @@ value of a key in hash table does not change.  In most cases, modifying
 a key in-place after it has been inserted into the hash table will
 violate this constraint and thus leads to unspecified behaviour.
 
-<h2><a name="Tpc">Type constructors and predicate</a></h2>
+<h2 id="Tpc">Type constructors and predicate</h2>
 
 <p>Procedure: <a name="mkh">make-hash-table</a> [ <var>equal?</var> [ <var>hash</var> [ <var>args</var> &hellip; ]]]
 &rarr; <var>hash-table</var>
@@ -187,7 +184,7 @@ approaches: using <tt>cadr</tt> would render this procedure unusable for
 <p>The rest <var>args</var> are passed to <a href="#mkh">make-hash-table</a> and can thus be used for
 implementation-specific extensions.
 
-<h2><a name="Rflc">Reflective queries</a></h2>
+<h2 id="Rflc">Reflective queries</h2>
 
 <p>Procedure: <a name="hsht1">hash-table-equivalence-function</a> <var>hash-table</var>
 
@@ -197,7 +194,7 @@ implementation-specific extensions.
 
 <p>Returns the hash function used for keys of <var>hash-table</var>.
 
-<h2><a name="Dln">Dealing with single elements</a></h2>
+<h2 id="Dln">Dealing with single elements</h2>
 
 <p>Procedure: <a name="hsht3">hash-table-ref</a> <var>hash-table</var>  <var>key</var> [ <var>thunk</var> ] &rarr; <var>value</var>
 
@@ -264,7 +261,7 @@ than, the following code:
 <p>Behaves as if it evaluates to <tt>(hash-table-update! hash-table key
 function (lambda () default))</tt>.
 
-<h2><a name="Dln10">Dealing with the whole contents</a></h2>
+<h2 id="Dln10">Dealing with the whole contents</h2>
 
 <p>Procedure: <a name="hsht11">hash-table-size</a> <var>hash-table</var> &rarr; <var>integer</var>
 
@@ -337,7 +334,7 @@ function and mappings as in <var>hash-table</var>.
 resulting hash table.  This function may modify <var>hash-table1</var>
 destructively.
 
-<h2><a name="Hshn">Hashing</a></h2>
+<h2 id="Hshn">Hashing</h2>
 
 <p>Hashing means the act of taking some value and producing a number from
 the value.  A hash function is a function that does this.  Every
@@ -384,7 +381,7 @@ acceptable for <tt>eq?</tt>.  The reason for providing this function is that
 it might be implemented significantly more efficiently than <tt>hash</tt>.
 Implementations are encouraged to provide this function as a builtin.
 
-<h1><a name="mplm">Implementation</a></h1>
+<h2 id="mplm">Implementation</h2>
 
 <p>This implementation relies on SRFI-9 for distinctness of the hash table
 type, and on SRFI-23 for error reporting.  Otherwise, the implementation
@@ -649,7 +646,7 @@ is pure R5RS.
 
 </pre>
 
-<h1><a name="Cpr">Copyright</a></h1>
+<h2 id="Cpr">Copyright</h2>
 
 <p>Copyright &copy; Panu Kalliokoski (2005). All Rights Reserved.
 
